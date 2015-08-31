@@ -3,17 +3,23 @@ import urllib2
 import json
 
 def getvendor(mac):
-    request = urllib2.Request("http://www.macvendorlookup.com/api/v2/"+mac)
-    response = urllib2.urlopen(request)
-    data = json.load(response)
-    company = data[0]['company'] if data[0]['company'] else 'unknown'
-    country = data[0]['country'] if data[0]['country'] else 'unknown'
-    address = data[0]['addressL1'] + '\n\t\t' + data[0]['addressL3']
+	try:
+	    request = urllib2.Request("http://www.macvendorlookup.com/api/v2/"+mac)
+	    response = urllib2.urlopen(request)
+	    data = json.load(response)
+	    company = data[0]['company'] if data[0]['company'] else 'unknown'
+	    country = data[0]['country'] if data[0]['country'] else 'unknown'
+	    address = data[0]['addressL1'] + '\n\t\t' + data[0]['addressL3']
 
-    print "\n[+] Mac : ",mac
-    print "[+] Vendor : ",company
-    print "[+] Address : ",address
-    print "[+] Country : ",country
+	    print "\n[+] Mac : ",mac
+	    print "[+] Vendor : ",company
+	    print "[+] Address : ",address
+	    print "[+] Country : ",country
+
+	except:
+		print "[!] Something is wrong, maybe the internet connection"
+		print "[!] Try again"
+
 
 if __name__ == '__main__':
 	import sys
