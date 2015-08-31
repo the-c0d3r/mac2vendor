@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+import urllib2
+import json
+
+def getvendor(mac):
+    request = urllib2.Request("http://www.macvendorlookup.com/api/v2/"+mac)
+    response = urllib2.urlopen(request)
+    data = json.load(response)
+    company = data[0]['company'] if data[0]['company'] else 'unknown'
+    country = data[0]['country'] if data[0]['country'] else 'unknown'
+    address = data[0]['addressL1'] + '\n\t\t' + data[0]['addressL3']
+
+    print "\n[+] Mac : ",mac
+    print "[+] Vendor : ",company
+    print "[+] Address : ",address
+    print "[+] Country : ",country
+
+if __name__ == '__main__':
+	import sys
+	if len(sys.argv) == 1:
+		print("[+] m2v mac_address")
+		print("[+] eg : m2v XX:XX:XX:XX:XX:XX")
+	elif len(sys.argv) == 2:
+		getvendor(sys.argv[1])
