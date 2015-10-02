@@ -9,10 +9,10 @@ def getvendor(mac):
 	    data = json.load(response)
 	    company = data[0]['company'] if data[0]['company'] else 'unknown'
 	    country = data[0]['country'] if data[0]['country'] else 'unknown'
-	    address = data[0]['addressL1'] + '\n\t\t' + data[0]['addressL3']
+	    address = data[0]['addressL1'] + '\n\t\t' + data[0]['addressL2']+ '\n\t\t' + data[0]['addressL3']
 
-	    print "\n[+] Mac : ",mac
-	    print "[+] Vendor : ",company
+	    print "\n[+] Mac     : ",mac
+	    print "[+] Vendor  : ",company
 	    print "[+] Address : ",address
 	    print "[+] Country : ",country
 
